@@ -1,0 +1,23 @@
+# Streamlit configuration for the finance-content classifier app.
+[server]
+# Disable the source-file hot-reload watcher. The watcher walks every imported
+# module (including the entire `transformers` model zoo) probing for `__path__`,
+# which triggers lazy vision-model imports that fail with
+# `ModuleNotFoundError: No module named 'torchvision'`. Those errors are caught
+# and harmless, but they flood the console. We serve trained models and never
+# edit source live, so the watcher is pure overhead — turn it off.
+fileWatcherType = "none"
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+# Cosmetic theme modelled on YouTube's palette (dark canvas, red accent, Roboto-style
+# sans). Drives Streamlit's own chrome (sliders, widgets); app.py layers matching CSS.
+[theme]
+base = "dark"
+primaryColor = "#FF0000"
+backgroundColor = "#0F0F0F"
+secondaryBackgroundColor = "#212121"
+textColor = "#F1F1F1"
+font = "sans serif"

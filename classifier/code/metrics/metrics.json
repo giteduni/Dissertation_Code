@@ -1,0 +1,1030 @@
+{
+  "reproducibility": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "seed": 42,
+    "package_versions": {
+      "scikit-learn": "1.9.0",
+      "xgboost": "3.1.1",
+      "shap": "0.52.0",
+      "pandas": "2.3.2",
+      "numpy": "2.3.2",
+      "scipy": "1.16.2",
+      "sentence-transformers": "5.5.1",
+      "transformers": "5.10.2",
+      "torch": "2.12.0",
+      "vaderSentiment": "3.3.2",
+      "matplotlib": "3.10.8"
+    },
+    "n_rows_total": 1000,
+    "class_balance": {
+      "EDUCATIONAL": 509,
+      "MISLEADING": 371,
+      "BORDERLINE": 66,
+      "NON_FINANCIAL": 54
+    },
+    "n_channels": 669,
+    "borderline_as": "exclude",
+    "primary_stage2_model": "model_a",
+    "char_ngrams_enabled": false,
+    "calibration_method": "auto",
+    "stage1_threshold_default": 0.5,
+    "stage2_threshold": 0.5,
+    "embedding_model": "all-MiniLM-L6-v2",
+    "transformer_model": "distilbert-base-uncased",
+    "train_transformer": "auto",
+    "temporal_cutoff": "2018-01-01",
+    "n_deployed_train": 853,
+    "n_demo_holdout": 147,
+    "evaluation_policy": "ALL reported metrics are out-of-sample (grouped CV + temporal hold-out). No in-sample score is reported anywhere."
+  },
+  "demo_holdout": {
+    "n_train": 853,
+    "n_demo": 147,
+    "label_balance": {
+      "EDUCATIONAL": 71,
+      "MISLEADING": 53,
+      "BORDERLINE": 13,
+      "NON_FINANCIAL": 10
+    }
+  },
+  "stage1": {
+    "cv": {
+      "n": 1000,
+      "n_positive": 54,
+      "threshold": 0.5,
+      "macro_f1": 0.7569925396709678,
+      "accuracy": 0.96,
+      "per_class": {
+        "NON_FINANCIAL": {
+          "precision": 0.71875,
+          "recall": 0.42592592592592593,
+          "f1": 0.5348837209302325,
+          "support": 54
+        },
+        "FINANCIAL": {
+          "precision": 0.9679752066115702,
+          "recall": 0.9904862579281184,
+          "f1": 0.9791013584117032,
+          "support": 946
+        }
+      },
+      "confusion_matrix": [
+        [
+          937,
+          9
+        ],
+        [
+          31,
+          23
+        ]
+      ],
+      "confusion_labels": [
+        "FINANCIAL",
+        "NON_FINANCIAL"
+      ],
+      "roc_auc": 0.9101675671443114,
+      "pr_auc": 0.556289951007079,
+      "protocol": "channel_grouped_cv",
+      "n_folds": 5,
+      "fold_macro_f1": [
+        0.8066031219781737,
+        0.7673065735892961,
+        0.7235833647443146,
+        0.7395833333333333,
+        0.7422680412371134
+      ],
+      "macro_f1_mean": 0.7558688869764462,
+      "macro_f1_std": 0.028973575838524248,
+      "macro_f1_ci95": [
+        0.7274747826546925,
+        0.7842629912981999
+      ],
+      "per_strategy": {
+        "E-commerce (Amazon/Shopify)": {
+          "n": 250,
+          "n_positive": 2,
+          "macro_f1": 1.0
+        },
+        "Entrepreneurship & Real Estate": {
+          "n": 250,
+          "n_positive": 23,
+          "macro_f1": 0.8091700167930386
+        },
+        "Online Earning / Freelance / WFH": {
+          "n": 250,
+          "n_positive": 21,
+          "macro_f1": 0.7076827842355045
+        },
+        "Trading & Day-Trading": {
+          "n": 250,
+          "n_positive": 8,
+          "macro_f1": 0.491869918699187
+        }
+      }
+    },
+    "temporal": {
+      "n": 540,
+      "n_positive": 25,
+      "threshold": 0.5,
+      "macro_f1": 0.7343058088043761,
+      "accuracy": 0.9685185185185186,
+      "per_class": {
+        "NON_FINANCIAL": {
+          "precision": 1.0,
+          "recall": 0.32,
+          "f1": 0.48484848484848486,
+          "support": 25
+        },
+        "FINANCIAL": {
+          "precision": 0.9680451127819549,
+          "recall": 1.0,
+          "f1": 0.9837631327602674,
+          "support": 515
+        }
+      },
+      "confusion_matrix": [
+        [
+          515,
+          0
+        ],
+        [
+          17,
+          8
+        ]
+      ],
+      "confusion_labels": [
+        "FINANCIAL",
+        "NON_FINANCIAL"
+      ],
+      "roc_auc": 0.8939805825242718,
+      "pr_auc": 0.6094897725132282,
+      "protocol": "temporal_holdout",
+      "cutoff": "2018-01-01",
+      "n_train": 460,
+      "n_test": 540,
+      "per_strategy": {
+        "E-commerce (Amazon/Shopify)": {
+          "n": 154,
+          "n_positive": 0,
+          "macro_f1": 1.0
+        },
+        "Entrepreneurship & Real Estate": {
+          "n": 102,
+          "n_positive": 10,
+          "macro_f1": 0.8643617021276595
+        },
+        "Online Earning / Freelance / WFH": {
+          "n": 140,
+          "n_positive": 10,
+          "macro_f1": 0.6517412935323383
+        },
+        "Trading & Day-Trading": {
+          "n": 144,
+          "n_positive": 5,
+          "macro_f1": 0.4911660777385159
+        }
+      }
+    },
+    "tuned_threshold": {
+      "threshold": 0.5,
+      "macro_f1": 0.7569925396709678,
+      "pos_recall": 0.42592592592592593,
+      "pos_precision": 0.71875
+    },
+    "tuned_confusion": {
+      "n": 1000,
+      "n_positive": 54,
+      "threshold": 0.5,
+      "macro_f1": 0.7569925396709678,
+      "accuracy": 0.96,
+      "per_class": {
+        "NON_FINANCIAL": {
+          "precision": 0.71875,
+          "recall": 0.42592592592592593,
+          "f1": 0.5348837209302325,
+          "support": 54
+        },
+        "FINANCIAL": {
+          "precision": 0.9679752066115702,
+          "recall": 0.9904862579281184,
+          "f1": 0.9791013584117032,
+          "support": 946
+        }
+      },
+      "confusion_matrix": [
+        [
+          937,
+          9
+        ],
+        [
+          31,
+          23
+        ]
+      ],
+      "confusion_labels": [
+        "FINANCIAL",
+        "NON_FINANCIAL"
+      ],
+      "roc_auc": 0.9101675671443114,
+      "pr_auc": 0.556289951007079
+    },
+    "high_recall_threshold": {
+      "threshold": 0.31,
+      "recall": 0.6111111111111112,
+      "precision": 0.4074074074074074,
+      "macro_f1": 0.7259457849270181,
+      "target_recall": 0.6
+    },
+    "high_recall_confusion": {
+      "n": 1000,
+      "n_positive": 54,
+      "threshold": 0.31,
+      "macro_f1": 0.7259457849270181,
+      "accuracy": 0.931,
+      "per_class": {
+        "NON_FINANCIAL": {
+          "precision": 0.4074074074074074,
+          "recall": 0.6111111111111112,
+          "f1": 0.4888888888888889,
+          "support": 54
+        },
+        "FINANCIAL": {
+          "precision": 0.9771490750816104,
+          "recall": 0.9492600422832981,
+          "f1": 0.9630026809651474,
+          "support": 946
+        }
+      },
+      "confusion_matrix": [
+        [
+          898,
+          48
+        ],
+        [
+          21,
+          33
+        ]
+      ],
+      "confusion_labels": [
+        "FINANCIAL",
+        "NON_FINANCIAL"
+      ],
+      "roc_auc": 0.9101675671443114,
+      "pr_auc": 0.556289951007079
+    },
+    "macro_f1_bootstrap_ci": {
+      "point": 0.7569925396709678,
+      "ci95": [
+        0.689922480620155,
+        0.8177317599468483
+      ],
+      "n_boot": 2000
+    }
+  },
+  "stage2": {
+    "model_a": {
+      "cv": {
+        "n": 880,
+        "n_positive": 371,
+        "threshold": 0.5,
+        "macro_f1": 0.8113426126278478,
+        "accuracy": 0.8170454545454545,
+        "per_class": {
+          "MISLEADING": {
+            "precision": 0.7949438202247191,
+            "recall": 0.7628032345013477,
+            "f1": 0.7785419532324622,
+            "support": 371
+          },
+          "EDUCATIONAL": {
+            "precision": 0.8320610687022901,
+            "recall": 0.8565815324165029,
+            "f1": 0.8441432720232332,
+            "support": 509
+          }
+        },
+        "confusion_matrix": [
+          [
+            436,
+            73
+          ],
+          [
+            88,
+            283
+          ]
+        ],
+        "confusion_labels": [
+          "EDUCATIONAL",
+          "MISLEADING"
+        ],
+        "roc_auc": 0.9027584344335651,
+        "pr_auc": 0.8803008210525527,
+        "protocol": "channel_grouped_cv",
+        "n_folds": 5,
+        "fold_macro_f1": [
+          0.8527788001472212,
+          0.8127410559914883,
+          0.7595868732300517,
+          0.7703249380138326,
+          0.8618194231097457
+        ],
+        "macro_f1_mean": 0.811450218098468,
+        "macro_f1_std": 0.04154002882299119,
+        "macro_f1_ci95": [
+          0.7707409898519366,
+          0.8521594463449993
+        ],
+        "per_strategy": {
+          "E-commerce (Amazon/Shopify)": {
+            "n": 230,
+            "n_positive": 110,
+            "macro_f1": 0.8347701149425287
+          },
+          "Entrepreneurship & Real Estate": {
+            "n": 215,
+            "n_positive": 42,
+            "macro_f1": 0.6979003573005741
+          },
+          "Online Earning / Freelance / WFH": {
+            "n": 214,
+            "n_positive": 103,
+            "macro_f1": 0.8031192499780953
+          },
+          "Trading & Day-Trading": {
+            "n": 221,
+            "n_positive": 116,
+            "macro_f1": 0.7918168414154653
+          }
+        }
+      },
+      "temporal": {
+        "n": 472,
+        "n_positive": 237,
+        "threshold": 0.5,
+        "macro_f1": 0.815378805249457,
+        "accuracy": 0.815677966101695,
+        "per_class": {
+          "MISLEADING": {
+            "precision": 0.8472222222222222,
+            "recall": 0.7721518987341772,
+            "f1": 0.8079470198675497,
+            "support": 237
+          },
+          "EDUCATIONAL": {
+            "precision": 0.7890625,
+            "recall": 0.8595744680851064,
+            "f1": 0.8228105906313645,
+            "support": 235
+          }
+        },
+        "confusion_matrix": [
+          [
+            202,
+            33
+          ],
+          [
+            54,
+            183
+          ]
+        ],
+        "confusion_labels": [
+          "EDUCATIONAL",
+          "MISLEADING"
+        ],
+        "roc_auc": 0.9037974683544304,
+        "pr_auc": 0.9076360823776128,
+        "protocol": "temporal_holdout",
+        "cutoff": "2018-01-01",
+        "n_train": 408,
+        "n_test": 472,
+        "per_strategy": {
+          "E-commerce (Amazon/Shopify)": {
+            "n": 142,
+            "n_positive": 78,
+            "macro_f1": 0.7872127872127872
+          },
+          "Entrepreneurship & Real Estate": {
+            "n": 86,
+            "n_positive": 22,
+            "macro_f1": 0.6928571428571428
+          },
+          "Online Earning / Freelance / WFH": {
+            "n": 118,
+            "n_positive": 67,
+            "macro_f1": 0.8554234234234235
+          },
+          "Trading & Day-Trading": {
+            "n": 126,
+            "n_positive": 70,
+            "macro_f1": 0.8064020486555699
+          }
+        }
+      },
+      "calibration": {
+        "brier_before": 0.12695386192915456,
+        "brier_after": 0.12327338558347177,
+        "ece_before": 0.055979438279411445,
+        "ece_after": 0.03848184679343199,
+        "method": "sigmoid"
+      },
+      "macro_f1_bootstrap_ci_cv": {
+        "point": 0.8113426126278478,
+        "ci95": [
+          0.7839438971446564,
+          0.8382342879595548
+        ],
+        "n_boot": 2000
+      },
+      "macro_f1_bootstrap_ci_temporal": {
+        "point": 0.815378805249457,
+        "ci95": [
+          0.7783703428767874,
+          0.8515651918401169
+        ],
+        "n_boot": 2000
+      }
+    },
+    "model_b": {
+      "cv": {
+        "n": 880,
+        "n_positive": 371,
+        "threshold": 0.5,
+        "macro_f1": 0.6728778684705155,
+        "accuracy": 0.6772727272727272,
+        "per_class": {
+          "MISLEADING": {
+            "precision": 0.6068796068796068,
+            "recall": 0.6657681940700808,
+            "f1": 0.6349614395886889,
+            "support": 371
+          },
+          "EDUCATIONAL": {
+            "precision": 0.7378435517970402,
+            "recall": 0.6856581532416502,
+            "f1": 0.7107942973523421,
+            "support": 509
+          }
+        },
+        "confusion_matrix": [
+          [
+            349,
+            160
+          ],
+          [
+            124,
+            247
+          ]
+        ],
+        "confusion_labels": [
+          "EDUCATIONAL",
+          "MISLEADING"
+        ],
+        "roc_auc": 0.7448514342905861,
+        "pr_auc": 0.683596484908074,
+        "protocol": "channel_grouped_cv",
+        "n_folds": 5,
+        "fold_macro_f1": [
+          0.6520499108734403,
+          0.687247584892249,
+          0.7060422466022598,
+          0.6458752515090543,
+          0.6657671164417791
+        ],
+        "macro_f1_mean": 0.6713964220637565,
+        "macro_f1_std": 0.02240044305130142,
+        "macro_f1_ci95": [
+          0.6494439878734811,
+          0.6933488562540319
+        ],
+        "per_strategy": {
+          "E-commerce (Amazon/Shopify)": {
+            "n": 230,
+            "n_positive": 110,
+            "macro_f1": 0.6428030303030303
+          },
+          "Entrepreneurship & Real Estate": {
+            "n": 215,
+            "n_positive": 42,
+            "macro_f1": 0.6110903193612774
+          },
+          "Online Earning / Freelance / WFH": {
+            "n": 214,
+            "n_positive": 103,
+            "macro_f1": 0.6906159642512923
+          },
+          "Trading & Day-Trading": {
+            "n": 221,
+            "n_positive": 116,
+            "macro_f1": 0.6454253743623498
+          }
+        }
+      },
+      "temporal": {
+        "n": 472,
+        "n_positive": 237,
+        "threshold": 0.5,
+        "macro_f1": 0.6539760640092109,
+        "accuracy": 0.6546610169491526,
+        "per_class": {
+          "MISLEADING": {
+            "precision": 0.6728971962616822,
+            "recall": 0.6075949367088608,
+            "f1": 0.6385809312638581,
+            "support": 237
+          },
+          "EDUCATIONAL": {
+            "precision": 0.6395348837209303,
+            "recall": 0.7021276595744681,
+            "f1": 0.6693711967545639,
+            "support": 235
+          }
+        },
+        "confusion_matrix": [
+          [
+            165,
+            70
+          ],
+          [
+            93,
+            144
+          ]
+        ],
+        "confusion_labels": [
+          "EDUCATIONAL",
+          "MISLEADING"
+        ],
+        "roc_auc": 0.7209085196157644,
+        "pr_auc": 0.7117859164684898,
+        "protocol": "temporal_holdout",
+        "cutoff": "2018-01-01",
+        "n_train": 408,
+        "n_test": 472,
+        "per_strategy": {
+          "E-commerce (Amazon/Shopify)": {
+            "n": 142,
+            "n_positive": 78,
+            "macro_f1": 0.6478174603174603
+          },
+          "Entrepreneurship & Real Estate": {
+            "n": 86,
+            "n_positive": 22,
+            "macro_f1": 0.558974358974359
+          },
+          "Online Earning / Freelance / WFH": {
+            "n": 118,
+            "n_positive": 67,
+            "macro_f1": 0.575944261092776
+          },
+          "Trading & Day-Trading": {
+            "n": 126,
+            "n_positive": 70,
+            "macro_f1": 0.7131292689096889
+          }
+        }
+      },
+      "calibration": {
+        "brier_before": 0.28014599242022625,
+        "brier_after": 0.18679214051616752,
+        "ece_before": 0.2641090943134211,
+        "ece_after": 0.04961878224865198,
+        "method": "sigmoid"
+      },
+      "macro_f1_bootstrap_ci_cv": {
+        "point": 0.6728778684705155,
+        "ci95": [
+          0.6418501655845852,
+          0.703949691276446
+        ],
+        "n_boot": 2000
+      },
+      "macro_f1_bootstrap_ci_temporal": {
+        "point": 0.6539760640092109,
+        "ci95": [
+          0.6098842290141235,
+          0.6970357039475642
+        ],
+        "n_boot": 2000
+      }
+    },
+    "model_a_withchar": {
+      "cv": {
+        "n": 880,
+        "n_positive": 371,
+        "threshold": 0.5,
+        "macro_f1": 0.7973338474969338,
+        "accuracy": 0.8045454545454546,
+        "per_class": {
+          "MISLEADING": {
+            "precision": 0.7900874635568513,
+            "recall": 0.7304582210242587,
+            "f1": 0.7591036414565826,
+            "support": 371
+          },
+          "EDUCATIONAL": {
+            "precision": 0.813780260707635,
+            "recall": 0.8585461689587426,
+            "f1": 0.8355640535372849,
+            "support": 509
+          }
+        },
+        "confusion_matrix": [
+          [
+            437,
+            72
+          ],
+          [
+            100,
+            271
+          ]
+        ],
+        "confusion_labels": [
+          "EDUCATIONAL",
+          "MISLEADING"
+        ],
+        "roc_auc": 0.8982413590412999,
+        "pr_auc": 0.8783493126762696,
+        "protocol": "channel_grouped_cv",
+        "n_folds": 5,
+        "fold_macro_f1": [
+          0.8299516908212561,
+          0.7955865272938443,
+          0.8002136752136753,
+          0.7371826779492285,
+          0.8237021173707298
+        ],
+        "macro_f1_mean": 0.7973273377297467,
+        "macro_f1_std": 0.03282900815105158,
+        "macro_f1_ci95": [
+          0.7651549097417162,
+          0.8294997657177773
+        ],
+        "per_strategy": {
+          "E-commerce (Amazon/Shopify)": {
+            "n": 230,
+            "n_positive": 110,
+            "macro_f1": 0.8086377732395431
+          },
+          "Entrepreneurship & Real Estate": {
+            "n": 215,
+            "n_positive": 42,
+            "macro_f1": 0.6559404870031573
+          },
+          "Online Earning / Freelance / WFH": {
+            "n": 214,
+            "n_positive": 103,
+            "macro_f1": 0.8034636578325899
+          },
+          "Trading & Day-Trading": {
+            "n": 221,
+            "n_positive": 116,
+            "macro_f1": 0.7782623830292605
+          }
+        }
+      },
+      "temporal": {
+        "n": 472,
+        "n_positive": 237,
+        "threshold": 0.5,
+        "macro_f1": 0.8110666852565631,
+        "accuracy": 0.8114406779661016,
+        "per_class": {
+          "MISLEADING": {
+            "precision": 0.8457943925233645,
+            "recall": 0.7637130801687764,
+            "f1": 0.802660753880266,
+            "support": 237
+          },
+          "EDUCATIONAL": {
+            "precision": 0.7829457364341085,
+            "recall": 0.8595744680851064,
+            "f1": 0.8194726166328601,
+            "support": 235
+          }
+        },
+        "confusion_matrix": [
+          [
+            202,
+            33
+          ],
+          [
+            56,
+            181
+          ]
+        ],
+        "confusion_labels": [
+          "EDUCATIONAL",
+          "MISLEADING"
+        ],
+        "roc_auc": 0.8930963282161775,
+        "pr_auc": 0.8899818581289882,
+        "protocol": "temporal_holdout",
+        "cutoff": "2018-01-01",
+        "n_train": 408,
+        "n_test": 472,
+        "per_strategy": {
+          "E-commerce (Amazon/Shopify)": {
+            "n": 142,
+            "n_positive": 78,
+            "macro_f1": 0.8155844155844156
+          },
+          "Entrepreneurship & Real Estate": {
+            "n": 86,
+            "n_positive": 22,
+            "macro_f1": 0.7048730267673301
+          },
+          "Online Earning / Freelance / WFH": {
+            "n": 118,
+            "n_positive": 67,
+            "macro_f1": 0.8018833491495729
+          },
+          "Trading & Day-Trading": {
+            "n": 126,
+            "n_positive": 70,
+            "macro_f1": 0.8009730207872623
+          }
+        }
+      },
+      "calibration": {
+        "brier_before": 0.13522686441184845,
+        "brier_after": 0.13019491033780933,
+        "ece_before": 0.07064015541076185,
+        "ece_after": 0.06334261738544969,
+        "method": "sigmoid"
+      },
+      "macro_f1_bootstrap_ci_cv": {
+        "point": 0.7973338474969338,
+        "ci95": [
+          0.7697134964099273,
+          0.8244722955974106
+        ],
+        "n_boot": 2000
+      },
+      "macro_f1_bootstrap_ci_temporal": {
+        "point": 0.8110666852565631,
+        "ci95": [
+          0.773295519299101,
+          0.8453056532079161
+        ],
+        "n_boot": 2000
+      }
+    },
+    "sensitivity_borderline_as_misleading_model_a": {
+      "n": 946,
+      "n_positive": 437,
+      "threshold": 0.5,
+      "macro_f1": 0.7955036748811068,
+      "accuracy": 0.7970401691331924,
+      "per_class": {
+        "MISLEADING": {
+          "precision": 0.7868852459016393,
+          "recall": 0.7688787185354691,
+          "f1": 0.7777777777777778,
+          "support": 437
+        },
+        "EDUCATIONAL": {
+          "precision": 0.8053949903660886,
+          "recall": 0.8212180746561886,
+          "f1": 0.8132295719844358,
+          "support": 509
+        }
+      },
+      "confusion_matrix": [
+        [
+          418,
+          91
+        ],
+        [
+          101,
+          336
+        ]
+      ],
+      "confusion_labels": [
+        "EDUCATIONAL",
+        "MISLEADING"
+      ],
+      "roc_auc": 0.8822791582184298,
+      "pr_auc": 0.87734246791357,
+      "protocol": "channel_grouped_cv",
+      "n_folds": 5,
+      "fold_macro_f1": [
+        0.8181511091093345,
+        0.8189655172413793,
+        0.7731481481481481,
+        0.788353863381859,
+        0.776369168356998
+      ],
+      "macro_f1_mean": 0.7949975612475438,
+      "macro_f1_std": 0.019895237062743217,
+      "macro_f1_ci95": [
+        0.7755002289260555,
+        0.8144948935690322
+      ],
+      "per_strategy": {
+        "E-commerce (Amazon/Shopify)": {
+          "n": 248,
+          "n_positive": 128,
+          "macro_f1": 0.7727153705158418
+        },
+        "Entrepreneurship & Real Estate": {
+          "n": 227,
+          "n_positive": 54,
+          "macro_f1": 0.7366910866910867
+        },
+        "Online Earning / Freelance / WFH": {
+          "n": 229,
+          "n_positive": 118,
+          "macro_f1": 0.7856173936302324
+        },
+        "Trading & Day-Trading": {
+          "n": 242,
+          "n_positive": 137,
+          "macro_f1": 0.7953364745680802
+        }
+      }
+    }
+  },
+  "shap": {
+    "top20_features": [
+      "title_has_currency",
+      "w:course",
+      "lex_RISK_OMISSION",
+      "lex_UNDISCLOSED_PROMO",
+      "title_has_number",
+      "w:get",
+      "w:in",
+      "w:it",
+      "like_to_view",
+      "w:here",
+      "w:join",
+      "w:000",
+      "desc_word_len",
+      "w:how",
+      "w:how to",
+      "desc_char_len",
+      "title_char_len",
+      "title_vader_compound",
+      "w:for",
+      "w:100"
+    ],
+    "codebook_marker_table": {
+      "RISK_OMISSION": {
+        "rank": 3,
+        "mean_abs_shap": 0.4780469834804535,
+        "mean_signed_shap_when_present": 1.175602912902832,
+        "n_present_in_sample": 55,
+        "direction_when_present": "\u2192 MISLEADING",
+        "direction": "\u2192 MISLEADING"
+      },
+      "UNDISCLOSED_PROMO": {
+        "rank": 4,
+        "mean_abs_shap": 0.4473614990711212,
+        "mean_signed_shap_when_present": 0.4234892427921295,
+        "n_present_in_sample": 131,
+        "direction_when_present": "\u2192 MISLEADING",
+        "direction": "\u2192 MISLEADING"
+      },
+      "GET_RICH_QUICK": {
+        "rank": 60,
+        "mean_abs_shap": 0.03471478074789047,
+        "mean_signed_shap_when_present": 0.15246129035949707,
+        "n_present_in_sample": 28,
+        "direction_when_present": "\u2192 MISLEADING",
+        "direction": "\u2192 MISLEADING"
+      },
+      "FAKE_CREDENTIAL": {
+        "rank": 7273,
+        "mean_abs_shap": 0.0,
+        "mean_signed_shap_when_present": 0.0,
+        "n_present_in_sample": 23,
+        "direction_when_present": "neutral/unused",
+        "direction": "neutral/unused"
+      },
+      "PUMP_HYPE": {
+        "rank": 7463,
+        "mean_abs_shap": 0.0,
+        "mean_signed_shap_when_present": 0.0,
+        "n_present_in_sample": 3,
+        "direction_when_present": "neutral/unused",
+        "direction": "neutral/unused"
+      },
+      "UNVERIFIABLE_PROOF": {
+        "rank": 14501,
+        "mean_abs_shap": 0.0,
+        "mean_signed_shap_when_present": 0.0,
+        "n_present_in_sample": 6,
+        "direction_when_present": "neutral/unused",
+        "direction": "neutral/unused"
+      },
+      "URGENCY_SCARCITY": {
+        "rank": 14502,
+        "mean_abs_shap": 0.0,
+        "mean_signed_shap_when_present": 0.0,
+        "n_present_in_sample": 6,
+        "direction_when_present": "neutral/unused",
+        "direction": "neutral/unused"
+      },
+      "RETURN_GUARANTEE": {
+        "rank": 14504,
+        "mean_abs_shap": 0.0,
+        "mean_signed_shap_when_present": 0.0,
+        "n_present_in_sample": 24,
+        "direction_when_present": "neutral/unused",
+        "direction": "neutral/unused"
+      }
+    },
+    "n_codebook_features_in_top20": 9
+  },
+  "model_c": {
+    "trained": true,
+    "metrics": {
+      "n": 174,
+      "n_positive": 73,
+      "threshold": 0.5,
+      "macro_f1": 0.722167487684729,
+      "accuracy": 0.7298850574712644,
+      "per_class": {
+        "MISLEADING": {
+          "precision": 0.6805555555555556,
+          "recall": 0.6712328767123288,
+          "f1": 0.6758620689655173,
+          "support": 73
+        },
+        "EDUCATIONAL": {
+          "precision": 0.7647058823529411,
+          "recall": 0.7722772277227723,
+          "f1": 0.7684729064039408,
+          "support": 101
+        }
+      },
+      "confusion_matrix": [
+        [
+          78,
+          23
+        ],
+        [
+          24,
+          49
+        ]
+      ],
+      "confusion_labels": [
+        "EDUCATIONAL",
+        "MISLEADING"
+      ],
+      "roc_auc": 0.8049640580496407,
+      "pr_auc": 0.7853226159940012,
+      "protocol": "channel_disjoint_split",
+      "best_epoch": 3,
+      "device": "cpu",
+      "n_train": 579,
+      "n_val": 127,
+      "n_test": 174
+    },
+    "model_a_same_split": {
+      "n": 174,
+      "n_positive": 73,
+      "threshold": 0.5,
+      "macro_f1": 0.783019204047458,
+      "accuracy": 0.7988505747126436,
+      "per_class": {
+        "MISLEADING": {
+          "precision": 0.8518518518518519,
+          "recall": 0.6301369863013698,
+          "f1": 0.7244094488188977,
+          "support": 73
+        },
+        "EDUCATIONAL": {
+          "precision": 0.775,
+          "recall": 0.9207920792079208,
+          "f1": 0.8416289592760181,
+          "support": 101
+        }
+      },
+      "confusion_matrix": [
+        [
+          93,
+          8
+        ],
+        [
+          27,
+          46
+        ]
+      ],
+      "confusion_labels": [
+        "EDUCATIONAL",
+        "MISLEADING"
+      ],
+      "roc_auc": 0.9053302590533026,
+      "pr_auc": 0.8762674419943692
+    },
+    "mcnemar_a_vs_c": {
+      "a_right_b_wrong": 24,
+      "a_wrong_b_right": 12,
+      "n_discordant": 36,
+      "p_value": 0.06524533522315325,
+      "acc_a": 0.7988505747126436,
+      "acc_b": 0.7298850574712644
+    },
+    "device": "cpu"
+  }
+}

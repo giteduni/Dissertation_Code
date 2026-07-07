@@ -1,0 +1,40 @@
+{
+  "seed": 42,
+  "borderline_as": "exclude",
+  "primary_stage2_model": "model_a",
+  "stage1_threshold_default": 0.5,
+  "stage1_threshold_tuned": 0.5,
+  "stage2_threshold": 0.5,
+  "positive_class": "Misleading",
+  "negative_class": "Educational",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "calibration": {
+    "brier_before": 0.12695386192915456,
+    "brier_after": 0.12327338558347177,
+    "ece_before": 0.055979438279411445,
+    "ece_after": 0.03848184679343199,
+    "method": "sigmoid"
+  },
+  "package_versions": {
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.1.1",
+    "shap": "0.52.0",
+    "pandas": "2.3.2",
+    "numpy": "2.3.2",
+    "scipy": "1.16.2",
+    "sentence-transformers": "5.5.1",
+    "transformers": "5.10.2",
+    "torch": "2.12.0",
+    "vaderSentiment": "3.3.2",
+    "matplotlib": "3.10.8"
+  },
+  "evaluation_policy": "ALL reported metrics are out-of-sample (grouped CV + temporal hold-out). No in-sample score is reported anywhere.",
+  "files": {
+    "stage1": "stage1_financial_gate.joblib",
+    "stage2_model_a_uncalibrated": "stage2_model_a_xgb.joblib",
+    "stage2_model_a_calibrated": "stage2_model_a_calibrated.joblib",
+    "stage2_model_b_uncalibrated": "stage2_model_b_embed.joblib",
+    "stage2_model_b_calibrated": "stage2_model_b_calibrated.joblib",
+    "train_fingerprints": "train_fingerprints.json"
+  }
+}
